@@ -103,6 +103,11 @@ Token ParseName(const std::string& input, size_t& pos) {
         return it->second;
     }
 
+    if (str.empty()) {
+        ++pos;
+        str.push_back(symbol);
+    }
+
     return UnknownToken{str};
 }
 
@@ -138,4 +143,5 @@ int main() {
     auto res4 = Tokenize("1 - sqr(2 * 3) + 4 / (abs(-5))");
     auto res5 = Tokenize("min(sqr(1 * 2), max(3, abs(-4)))");
     auto res6 = Tokenize("sqrt(1 * 2)");
+    auto res7 = Tokenize(".1 + 2");
 }
